@@ -109,7 +109,7 @@ class SettingsViewController: UIViewController {
             UIAlertAction(title: "Delete Account", style: .destructive, handler: { _ in
                 user.delete { [weak self] result in
                     switch result {
-                    case .success(let response):
+                    case .success(_):
                         self?.navigationController?.popToRootViewController(animated: true)
                     case .failure(let error):
                         DispatchQueue.main.async {
