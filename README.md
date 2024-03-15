@@ -4,7 +4,7 @@ Submitted by: Gerasimina Krani
 
 BeReal is an app that lets users upload images and view other users uploads.
 
-Time spent: 15 hours spent in total
+Time spent: 6 hours spent in total
 
 ## Required Features
 
