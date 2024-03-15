@@ -8,6 +8,7 @@
 import Foundation
 import ParseSwift
 
+
 struct Post: ParseObject {
     // These are required by ParseObject
     var objectId: String?
@@ -20,4 +21,8 @@ struct Post: ParseObject {
     var description: String?
     var user: User?
     var imageFile: ParseFile?
+    var longitude: Double?
+    var latitude: Double?
 }
+
+

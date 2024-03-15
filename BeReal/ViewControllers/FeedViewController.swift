@@ -9,10 +9,12 @@ import UIKit
 import ParseSwift
 
 class FeedViewController: UIViewController {
-
+    
     @IBOutlet weak var tableView: UITableView!
 
     private var refreshControl = UIRefreshControl()
+    
+    let user = User.current
     
     var posts: [Post] = [] {
         didSet {
@@ -21,13 +23,13 @@ class FeedViewController: UIViewController {
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationManager.shared.requestPermission()
+        NotificationManager.shared.scheduleDailyNotification()
         navigationController?.navigationBar.isHidden = true
         setupTableView()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +45,7 @@ class FeedViewController: UIViewController {
         tableView.rowHeight = UITableView.automaticDimension
         
         refreshControl.addTarget(self, action: #selector(refreshPosts), for: .valueChanged)
+        refreshControl.tintColor = .lightGray
         tableView.refreshControl = refreshControl
     }
     
@@ -53,15 +56,20 @@ class FeedViewController: UIViewController {
     
     
     func queryPosts() {
-
+        
+        let yesterdayDate = Calendar.current.date(byAdding: .day, value: (-1), to: Date())!
+        
         let query = Post.query()
             .include("user")
+            .where("createdAt" >= yesterdayDate)
             .order([.descending("createdAt")])
+            .limit(10)
 
         query.find { [weak self] result in
             switch result {
             case .success(let posts):
-                self?.posts = posts 
+                
+                self?.posts = posts
                 self?.refreshControl.endRefreshing()
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -71,12 +79,6 @@ class FeedViewController: UIViewController {
                 self?.refreshControl.endRefreshing()
             }
         }
-    }
-    
-    @IBAction func postButtonPressed(_ sender: UIButton) {
-
-        guard let postVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "postVC") as? PostViewController else {return }
-        navigationController?.pushViewController(postVC, animated: true)
     }
 }
 
@@ -89,9 +91,12 @@ extension FeedViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as? PostCell else { return UITableViewCell() }
+        cell.navigationController = navigationController
+        cell.post = posts[indexPath.row]
         cell.configureFor(post: posts[indexPath.row])
         return cell
     }
+
 }
 
 extension FeedViewController: UITableViewDelegate {}

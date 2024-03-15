@@ -8,6 +8,7 @@
 import UIKit
 import PhotosUI
 import ParseSwift
+import CoreLocation
 
 
 class PostViewController: UIViewController {
@@ -16,9 +17,15 @@ class PostViewController: UIViewController {
     @IBOutlet weak var captionTextField: UITextField!
     
     var pickedImage: UIImage?
+    var location: CLLocation?
+    
+    var isPickingImage: Bool = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        LocationManager.shared.requestPersmisson()
     }
     
     
@@ -93,6 +100,9 @@ class PostViewController: UIViewController {
     
     @IBAction func cameraButtonPressed(_ sender: Any) {
         
+        
+        
+        
         DispatchQueue.main.async { [weak self] in
             self?.presentCamera()
         }
@@ -101,25 +111,52 @@ class PostViewController: UIViewController {
     
     @IBAction func postButtonPressed(_ sender: Any) {
         
+        
+        guard var user = User.current else {return}
         guard let image = pickedImage, let imageData = image.jpegData(compressionQuality: 0.1) else { return}
 
         let imageFile = ParseFile(name: "image.jpg", data: imageData)
         
         var post = Post()
-        post.user = User.current
+        post.user = user
         post.description = captionTextField.text
         post.imageFile = imageFile
+        
+        if isPickingImage {
+            post.longitude = location?.coordinate.longitude
+            post.latitude = location?.coordinate.latitude
+            
+        } else {
+            post.longitude = LocationManager.shared.currentLocation?.coordinate.longitude
+            post.latitude = LocationManager.shared.currentLocation?.coordinate.latitude
+        }
+        
+        
         
         post.save { [weak self] result in
             switch result {
                 
             case .success(_):
-                DispatchQueue.main.async {
-                    self?.postImageView.image = UIImage(named: "photographer")
-                    self?.captionTextField.text = nil
-                    self?.view.endEditing(true)
-                    self?.tabBarController?.selectedIndex = 0
+                
+                user.lastPostedDate = Date()
+                
+                user.save { result in
+                    switch result {
+                        
+                    case .success(_):
+                        DispatchQueue.main.async {
+                            
+                            self?.postImageView.image = UIImage(named: "photographer")
+                            self?.captionTextField.text = nil
+                            self?.view.endEditing(true)
+                            self?.tabBarController?.selectedIndex = 0
+                        }
+                        
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
                 }
+                
             case .failure(let error):
                 
                 DispatchQueue.main.async {
@@ -140,6 +177,7 @@ extension PostViewController: UINavigationControllerDelegate, UIImagePickerContr
         
         guard let image = info[.originalImage] as? UIImage else {return}
         pickedImage = image
+        isPickingImage = false
    
         DispatchQueue.main.async { [weak self] in
             self?.postImageView.image = image
@@ -156,7 +194,13 @@ extension PostViewController: PHPickerViewControllerDelegate {
         
         let result = results.first
         
-        guard let provider = result?.itemProvider, provider.canLoadObject(ofClass: UIImage.self) else {return}
+        guard let assetId = result?.assetIdentifier else { return }
+        guard let provider = result?.itemProvider else { return }
+        guard provider.canLoadObject(ofClass: UIImage.self) else { return }
+        
+        if let location = PHAsset.fetchAssets(withLocalIdentifiers: [assetId], options: nil).firstObject?.location {
+            self.location = location
+        }
         
         provider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
             if let error {
@@ -167,8 +211,10 @@ extension PostViewController: PHPickerViewControllerDelegate {
                     self?.present(alert, animated: true)
                 }
             }
+            
             guard let image = object as? UIImage else { return }
             self?.pickedImage = image
+            self?.isPickingImage = true
             
             DispatchQueue.main.async {
                 self?.postImageView.image = image

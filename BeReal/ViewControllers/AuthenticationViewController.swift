@@ -118,7 +118,6 @@ class AuthenticationViewController: UIViewController, UITextFieldDelegate {
 
                 switch result {
                 case .success(_):
-                    
                     guard let tabBarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "tabBarVC") as? UITabBarController else {return}
                     self?.navigationController?.pushViewController(tabBarVC, animated: true)
                     

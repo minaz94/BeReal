@@ -90,6 +90,7 @@ class SettingsViewController: UIViewController {
             switch result {
                 
             case .success():
+                NotificationManager.shared.removePendingNotification()
                 self?.navigationController?.popToRootViewController(animated: true)
             case .failure(let error):
                 DispatchQueue.main.async {
@@ -103,22 +104,36 @@ class SettingsViewController: UIViewController {
     @IBAction func deleteAccountButtonPressed(_ sender: Any) {
         
         guard let user = User.current else {return}
+        let query = try? Post.query("user" == user)
+       
         
         let alert = AlertPresenter.alert(title: "Are you sure you want to delete your account?", actions: [
             UIAlertAction(title: "cancel", style: .cancel),
             UIAlertAction(title: "Delete Account", style: .destructive, handler: { _ in
-                user.delete { [weak self] result in
-                    switch result {
-                    case .success(_):
-                        self?.navigationController?.popToRootViewController(animated: true)
-                    case .failure(let error):
-                        DispatchQueue.main.async {
-                        let alert = AlertPresenter.alert(title: "Error", message: error.localizedDescription, actions: [UIAlertAction(title: "Try again", style: .default)])
-                            self?.present(alert, animated: true)
+                DispatchQueue.global(qos: .background).async {
+                    user.delete { [weak self] result in
+                        switch result {
+                        case .success(_):
+                            query?.find { result in
+                                switch result {
+                                    
+                                case .success(let posts):
+                                    posts.forEach { post in
+                                        try? post.delete()
+                                    }
+                                case .failure(let error):
+                                    print(error.localizedDescription)
+                                }
+                            }
+                            self?.navigationController?.popToRootViewController(animated: true)
+                        case .failure(let error):
+                            DispatchQueue.main.async {
+                                let alert = AlertPresenter.alert(title: "Error", message: error.localizedDescription, actions: [UIAlertAction(title: "Try again", style: .default)])
+                                self?.present(alert, animated: true)
+                            }
                         }
                     }
                 }
-            
         })])
         present(alert, animated: true)
     }

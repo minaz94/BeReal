@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		3B014A672B98FCB100E075FB /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B014A662B98FCB100E075FB /* LaunchViewController.swift */; };
 		3B7148BD2B9918A3000D54EF /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B7148BC2B9918A3000D54EF /* UILabel+Ext.swift */; };
+		3B71ECFD2B9FDF4D00170D9F /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71ECFC2B9FDF4D00170D9F /* CommentsViewController.swift */; };
+		3B71ED012B9FE90100170D9F /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71ED002B9FE90100170D9F /* CommentCell.swift */; };
 		3B72DE8C2B9C06190054A483 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B72DE8B2B9C06190054A483 /* Date+Ext.swift */; };
 		3BB7D3AD2B968F0B006D5DBA /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7D3AC2B968F0B006D5DBA /* FeedViewController.swift */; };
 		3BB7D3AF2B9690A2006D5DBA /* AlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7D3AE2B9690A2006D5DBA /* AlertPresenter.swift */; };
@@ -17,6 +19,9 @@
 		3BB7D3B52B96A40A006D5DBA /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7D3B42B96A40A006D5DBA /* PostViewController.swift */; };
 		3BB7D3B72B96ADC4006D5DBA /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7D3B62B96ADC4006D5DBA /* PostCell.swift */; };
 		3BB7D3B92B96AE51006D5DBA /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB7D3B82B96AE51006D5DBA /* Post.swift */; };
+		3BC7A4842BA10D36000A36A3 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7A4832BA10D36000A36A3 /* Comment.swift */; };
+		3BC7A4872BA10F9F000A36A3 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7A4862BA10F9F000A36A3 /* LocationManager.swift */; };
+		3BC7A48A2BA3C41D000A36A3 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC7A4892BA3C41D000A36A3 /* NotificationManager.swift */; };
 		3BEA88A52B966460003E6401 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA88A42B966460003E6401 /* AppDelegate.swift */; };
 		3BEA88A72B966460003E6401 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA88A62B966460003E6401 /* SceneDelegate.swift */; };
 		3BEA88A92B966460003E6401 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BEA88A82B966460003E6401 /* AuthenticationViewController.swift */; };
@@ -28,6 +33,8 @@
 /* Begin PBXFileReference section */
 		3B014A662B98FCB100E075FB /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		3B7148BC2B9918A3000D54EF /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		3B71ECFC2B9FDF4D00170D9F /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		3B71ED002B9FE90100170D9F /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		3B72DE8B2B9C06190054A483 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		3BB7D3AC2B968F0B006D5DBA /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		3BB7D3AE2B9690A2006D5DBA /* AlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresenter.swift; sourceTree = "<group>"; };
@@ -36,6 +43,9 @@
 		3BB7D3B42B96A40A006D5DBA /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		3BB7D3B62B96ADC4006D5DBA /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		3BB7D3B82B96AE51006D5DBA /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		3BC7A4832BA10D36000A36A3 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		3BC7A4862BA10F9F000A36A3 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		3BC7A4892BA3C41D000A36A3 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		3BEA88A12B966460003E6401 /* BeReal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeReal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BEA88A42B966460003E6401 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3BEA88A62B966460003E6401 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +75,7 @@
 				3BB7D3B22B96A35E006D5DBA /* SettingsViewController.swift */,
 				3BB7D3B42B96A40A006D5DBA /* PostViewController.swift */,
 				3B014A662B98FCB100E075FB /* LaunchViewController.swift */,
+				3B71ECFC2B9FDF4D00170D9F /* CommentsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -74,6 +85,7 @@
 			children = (
 				3BB7D3B02B96962C006D5DBA /* User.swift */,
 				3BB7D3B82B96AE51006D5DBA /* Post.swift */,
+				3BC7A4832BA10D36000A36A3 /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -82,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				3BB7D3B62B96ADC4006D5DBA /* PostCell.swift */,
+				3B71ED002B9FE90100170D9F /* CommentCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -112,6 +125,22 @@
 			path = Presenters;
 			sourceTree = "<group>";
 		};
+		3BC7A4852BA10F73000A36A3 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				3BC7A4862BA10F9F000A36A3 /* LocationManager.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
+		3BC7A4882BA3C3F0000A36A3 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				3BC7A4892BA3C41D000A36A3 /* NotificationManager.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		3BEA88982B966460003E6401 = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +160,8 @@
 		3BEA88A32B966460003E6401 /* BeReal */ = {
 			isa = PBXGroup;
 			children = (
+				3BC7A4882BA3C3F0000A36A3 /* Notifications */,
+				3BC7A4852BA10F73000A36A3 /* Location */,
 				3B7148C22B992B10000D54EF /* appDelegates */,
 				3B7148BE2B992AC8000D54EF /* ViewControllers */,
 				3B7148C32B992BA5000D54EF /* Presenters */,
@@ -221,14 +252,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				3BB7D3B52B96A40A006D5DBA /* PostViewController.swift in Sources */,
+				3BC7A4872BA10F9F000A36A3 /* LocationManager.swift in Sources */,
 				3BEA88A92B966460003E6401 /* AuthenticationViewController.swift in Sources */,
+				3B71ECFD2B9FDF4D00170D9F /* CommentsViewController.swift in Sources */,
 				3B72DE8C2B9C06190054A483 /* Date+Ext.swift in Sources */,
 				3BB7D3AF2B9690A2006D5DBA /* AlertPresenter.swift in Sources */,
+				3B71ED012B9FE90100170D9F /* CommentCell.swift in Sources */,
 				3BB7D3B12B96962C006D5DBA /* User.swift in Sources */,
 				3BEA88A52B966460003E6401 /* AppDelegate.swift in Sources */,
 				3BB7D3B72B96ADC4006D5DBA /* PostCell.swift in Sources */,
 				3BB7D3B32B96A35E006D5DBA /* SettingsViewController.swift in Sources */,
 				3BB7D3AD2B968F0B006D5DBA /* FeedViewController.swift in Sources */,
+				3BC7A48A2BA3C41D000A36A3 /* NotificationManager.swift in Sources */,
+				3BC7A4842BA10D36000A36A3 /* Comment.swift in Sources */,
 				3B014A672B98FCB100E075FB /* LaunchViewController.swift in Sources */,
 				3BEA88A72B966460003E6401 /* SceneDelegate.swift in Sources */,
 				3B7148BD2B9918A3000D54EF /* UILabel+Ext.swift in Sources */,
